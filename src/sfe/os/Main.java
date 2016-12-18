@@ -258,7 +258,7 @@ public class Main extends Application {
 
 
 
-        appsBar.getChildren().addAll(fileExplorer, imageViewerApp, musicPlayerApp, browserApp, calculator,downloader);
+        appsBar.getChildren().addAll(fileExplorer, imageViewerApp, musicPlayerApp, browserApp, calculator,memoApp,downloader);
         appsBar.setBackground(new Background(new BackgroundFill(Color.web("#000000", 0), new CornerRadii(5), new Insets(0, 350, 0, 350))));
         appsBar.setPadding(new Insets(5, 0, 5, 0));
         appsBar.setTranslateY(-350);
@@ -291,7 +291,7 @@ public class Main extends Application {
                     String minuteString = StringUtilities.pad(2, '0', time.get(Calendar.MINUTE) + "");
                     String secondString = StringUtilities.pad(2, '0', time.get(Calendar.SECOND) + "");
                     String ampmString = time.get(Calendar.AM_PM) == Calendar.AM ? "AM" : "PM";
-                    label.setText(hourString + ":" + minuteString + ":" + secondString + " " + ampmString + "\n" + new SimpleDateFormat("dd/MM/yyyy").format(time.getTime()));
+                    label.setText(hourString + ":" + minuteString + ":" + secondString + " " + ampmString + "\n" + new SimpleDateFormat("dd-MM-yyyy").format(time.getTime()));
                 }),
                 new KeyFrame(Duration.seconds(1)));
 
