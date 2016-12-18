@@ -291,7 +291,7 @@ public class Main extends Application {
                     String minuteString = StringUtilities.pad(2, '0', time.get(Calendar.MINUTE) + "");
                     String secondString = StringUtilities.pad(2, '0', time.get(Calendar.SECOND) + "");
                     String ampmString = time.get(Calendar.AM_PM) == Calendar.AM ? "AM" : "PM";
-                    label.setText(hourString + ":" + minuteString + ":" + secondString + " " + ampmString + "\n" + new SimpleDateFormat("dd/MM/yyyy").format(time.getTime()));
+                    label.setText(hourString + ":" + minuteString + ":" + secondString + " " + ampmString + "\n" + new SimpleDateFormat("dd-MM-yyyy").format(time.getTime()));
                 }),
                 new KeyFrame(Duration.seconds(1)));
 

@@ -31,7 +31,7 @@ import java.net.Socket;
 
 public class WebBrowser {
 
-    public static final String defaultUrl = "www.google.com";
+    public static final String defaultUrl = "www.nasa.gov";
     private String fileUrl = null;
     WebView browser;
     WebEngine engine;
