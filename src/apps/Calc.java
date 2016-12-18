@@ -57,7 +57,7 @@ static CPU cpu=new CPU();
     private VBox createLayout(TextField screen, TilePane buttons) {
         final VBox layout = new VBox(20);
         layout.setAlignment(Pos.CENTER);
-        layout.setStyle("-fx-background-color: dodgerblue; -fx-padding: 20; -fx-font-size: 20;");
+        layout.setStyle("-fx-background-color: #333333; -fx-padding: 20; -fx-font-size: 20;");
         layout.getChildren().setAll(screen, buttons);
         handleAccelerators(layout);
         screen.prefWidthProperty().bind(buttons.widthProperty());
@@ -78,7 +78,7 @@ static CPU cpu=new CPU();
 
     private TextField createScreen() {
         final TextField screen = new TextField();
-        screen.setStyle("-fx-background-color: lightblue;");
+        screen.setStyle("-fx-background-color: #e4e4e4;");
         screen.setAlignment(Pos.CENTER_RIGHT);
         screen.setEditable(false);
         screen.textProperty().bind(Bindings.format("%.0f", value));
