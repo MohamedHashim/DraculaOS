@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d72fd62-6e16-430a-986f-68e8e6f93315" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/res/Calculator.png" afterPath="$PROJECT_DIR$/src/res/Calculator.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/res/FileExplorer.png" afterPath="$PROJECT_DIR$/src/res/FileExplorer.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/res/ImageViewer.png" afterPath="$PROJECT_DIR$/src/res/ImageViewer.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/res/Memo.png" afterPath="$PROJECT_DIR$/src/res/Memo.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/res/MusicPlayer.png" afterPath="$PROJECT_DIR$/src/res/MusicPlayer.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/res/Space.png" afterPath="$PROJECT_DIR$/src/res/Space.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/res/gravity.jpg" afterPath="$PROJECT_DIR$/src/res/gravity.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/res/powerOff.png" afterPath="$PROJECT_DIR$/src/res/powerOff.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/OSProject.iml" afterPath="$PROJECT_DIR$/OSProject.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/sfe/os/Main.java" afterPath="$PROJECT_DIR$/src/sfe/os/Main.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="/media/mohamed/Programs/aaaaa/" />
     <ignored path="/test/OSProject/" />
@@ -579,12 +571,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1482074402014</updated>
-      <workItem from="1482074405445" duration="1685000" />
+      <workItem from="1482074405445" duration="1815000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1685000" />
+    <option name="totallyTimeSpent" value="1815000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="49" y="24" width="1317" height="744" extended-state="6" />
