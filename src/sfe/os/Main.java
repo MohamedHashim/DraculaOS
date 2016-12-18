@@ -70,8 +70,8 @@ public class Main extends Application {
         Label fileExplorer = new Label(null, new ImageView("res/FileExplorer.png"));
         fileExplorer.setAlignment(Pos.CENTER);
         fileExplorer.setOnMouseEntered(event1 -> {
-            fileExplorer.setScaleX(1.3);
-            fileExplorer.setScaleY(1.3);
+            fileExplorer.setScaleX(1);
+            fileExplorer.setScaleY(1);
         });
         fileExplorer.setOnMouseExited(event1 -> {
             fileExplorer.setScaleX(1);
@@ -88,8 +88,8 @@ public class Main extends Application {
         Label imageViewerApp = new Label(null, new ImageView("res/ImageViewer.png"));
         imageViewerApp.setAlignment(Pos.CENTER);
         imageViewerApp.setOnMouseEntered(event1 -> {
-            imageViewerApp.setScaleX(1.3);
-            imageViewerApp.setScaleY(1.3);
+            imageViewerApp.setScaleX(1);
+            imageViewerApp.setScaleY(1);
         });
         imageViewerApp.setOnMouseExited(event1 -> {
             imageViewerApp.setScaleX(1);
@@ -108,8 +108,8 @@ public class Main extends Application {
         Label memoApp = new Label(null, new ImageView("res/Memo.png"));
         memoApp.setAlignment(Pos.CENTER);
         memoApp.setOnMouseEntered(event1 -> {
-            memoApp.setScaleX(1.3);
-            memoApp.setScaleY(1.3);
+            memoApp.setScaleX(1);
+            memoApp.setScaleY(1);
         });
         memoApp.setOnMouseExited(event1 -> {
             memoApp.setScaleX(1);
@@ -130,8 +130,8 @@ public class Main extends Application {
         Label musicPlayerApp = new Label(null, new ImageView("res/MusicPlayer.png"));
         musicPlayerApp.setAlignment(Pos.CENTER);
         musicPlayerApp.setOnMouseEntered(event1 -> {
-            musicPlayerApp.setScaleX(1.3);
-            musicPlayerApp.setScaleY(1.3);
+            musicPlayerApp.setScaleX(1);
+            musicPlayerApp.setScaleY(1);
         });
         musicPlayerApp.setOnMouseExited(event1 -> {
             musicPlayerApp.setScaleX(1);
@@ -153,8 +153,8 @@ public class Main extends Application {
         Label videoPlayerApp = new Label(null, new ImageView("res/VideoPlayer.png"));
         videoPlayerApp.setAlignment(Pos.CENTER);
         videoPlayerApp.setOnMouseEntered(event1 -> {
-            videoPlayerApp.setScaleX(1.3);
-            videoPlayerApp.setScaleY(1.3);
+            videoPlayerApp.setScaleX(1);
+            videoPlayerApp.setScaleY(1);
         });
         videoPlayerApp.setOnMouseExited(event1 -> {
             videoPlayerApp.setScaleX(1);
@@ -173,8 +173,8 @@ public class Main extends Application {
         Label browserApp = new Label(null, new ImageView("res/Space.png"));
         browserApp.setAlignment(Pos.CENTER);
         browserApp.setOnMouseEntered(event1 -> {
-            browserApp.setScaleX(1.3);
-            browserApp.setScaleY(1.3);
+            browserApp.setScaleX(1);
+            browserApp.setScaleY(1);
         });
         browserApp.setOnMouseExited(event1 -> {
             browserApp.setScaleX(1);
@@ -197,12 +197,13 @@ public class Main extends Application {
         Label calculator = new Label(null, new ImageView("res/Calculator.png"));
         calculator.setAlignment(Pos.CENTER);
         calculator.setOnMouseEntered(event1 -> {
-            calculator.setScaleX(1.3);
-            calculator.setScaleY(1.3);
+            calculator.setTranslateY(-6.0);
+
+
         });
         calculator.setOnMouseExited(event1 -> {
-            calculator.setScaleX(1);
-            calculator.setScaleY(1);
+            calculator.setTranslateY(0);
+
         });
         calculator.setOnMouseClicked(event -> {
             if(event.getButton().equals(MouseButton.PRIMARY)) {
@@ -222,8 +223,8 @@ public class Main extends Application {
         Label xo = new Label(null, new ImageView("res/xo.png"));
         xo.setAlignment(Pos.CENTER);
         xo.setOnMouseEntered(event1 -> {
-            xo.setScaleX(1.3);
-            xo.setScaleY(1.3);
+            xo.setScaleX(1);
+            xo.setScaleY(1);
         });
         xo.setOnMouseExited(event1 -> {
             xo.setScaleX(1);
@@ -245,8 +246,10 @@ public class Main extends Application {
 
 
         appsBar.getChildren().addAll(fileExplorer, imageViewerApp, musicPlayerApp, browserApp, calculator);
-        appsBar.setBackground(new Background(new BackgroundFill(Color.web("#000000", 0.3), new CornerRadii(5), new Insets(0, 350, 0, 350))));
+        appsBar.setBackground(new Background(new BackgroundFill(Color.web("#000000", 0), new CornerRadii(5), new Insets(300, 350, 300, 350))));
+        appsBar.setTranslateY(-300);
         appsBar.setPadding(new Insets(5, 0, 5, 0));
+
         appsBar.setAlignment(Pos.CENTER);
         return appsBar;
     }
@@ -254,14 +257,15 @@ public class Main extends Application {
     private HBox turnOff() {
         ImageView turnOff = new ImageView("res/powerOff.png");
         HBox box = new HBox(turnOff);
-        box.setOnMouseEntered(event -> turnOff.setEffect(new Glow(0.5)));
-        box.setOnMouseExited(event -> turnOff.setEffect(null));
+        turnOff.setStyle("-fx-opacity: 0.4;");
+        box.setOnMouseExited(event -> turnOff.setStyle("-fx-opacity: 0.4;"));
+        box.setOnMouseEntered(event -> turnOff.setStyle("-fx-opacity: 1;"));
         box.setOnMouseClicked(event -> {
             fileSystem.store();
             System.exit(0);
         });
-        box.setBackground(new Background(new BackgroundFill(Color.web("#000000", 0.2), new CornerRadii(5), new Insets(5, 5, 5, 5))));
-        box.setPadding(new Insets(5, 5, 5, 5));
+        box.setBackground(new Background(new BackgroundFill(Color.web("#000000", 0), new CornerRadii(5), new Insets(5, 5, 0, 5))));
+        box.setPadding(new Insets(0, 0, 20, 40));
         box.setAlignment(Pos.CENTER_LEFT);
         return box;
     }
@@ -285,9 +289,10 @@ public class Main extends Application {
         label.setStyle("-fx-font-size: 14; -fx-text-fill: white; -fx-text-alignment: center; ");
 
         HBox box = new HBox(label);
-        box.setBackground(new Background(new BackgroundFill(Color.web("#000000", 0.2), new CornerRadii(5), new Insets(2, 2, 2, 2))));
-        box.setPadding(new Insets(5, 5, 5, 5));
+        box.setBackground(new Background(new BackgroundFill(Color.web("#000000", 0), new CornerRadii(5), new Insets(2, 2, 2, 2))));
+        box.setPadding(new Insets(5, 35, 5, 5));
         box.setAlignment(Pos.CENTER_RIGHT);
+
         return box;
     }
 
