@@ -25,13 +25,8 @@ import java.nio.file.*;
 
 
 public class Downloader {
-
-    private double angles[] = {90, 180, 270, 360};
-    private int currentAngle = 0;
-    private double height;
     int id;
     Stage stage;
-    ImageView imgView = new ImageView();
     static CPU cpu;
     public Downloader( CPU cpu, int id ) {
         this.cpu=cpu;
@@ -40,9 +35,6 @@ public class Downloader {
         this.id=id;
         BorderPane border = new BorderPane();
         border.setTop(menuBar());
-//        border.setCenter(viewer(fileUrl));
-//        border.setBottom(controlsBar());
-
         stage.setScene(new Scene(createContent()));
         stage.show();
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
