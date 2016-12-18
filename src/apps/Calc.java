@@ -43,7 +43,7 @@ static CPU cpu=new CPU();
         final TextField screen = createScreen();
         final TilePane buttons = createButtons();
 
-        stage.setTitle("Calculator");
+        stage.setTitle("Numbers");
         stage.setOnCloseRequest(event -> {
             System.out.println("Calculator with id : "+id+" Is removed");
             cpu.RemoveProcess(id);

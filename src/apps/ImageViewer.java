@@ -68,13 +68,13 @@ public class ImageViewer {
         VBox zoomControls = new VBox();
         Label buttonZoomIn = new Label(null, new ImageView(new Image("res/ImageViewerIcons/zoomIn.png")));
         Label buttonZoomOut = new Label(null, new ImageView(new Image("res/ImageViewerIcons/zoomOut.png")));
-        buttonZoomIn.setOpacity(0.3);
-        buttonZoomOut.setOpacity(0.3);
+        buttonZoomIn.setOpacity(0.5);
+        buttonZoomOut.setOpacity(0.5);
 
-        buttonZoomIn.setOnMouseEntered(event1 -> buttonZoomIn.setOpacity(0.5));
-        buttonZoomIn.setOnMouseExited(event1 -> buttonZoomIn.setOpacity(0.3));
-        buttonZoomOut.setOnMouseEntered(event1 -> buttonZoomOut.setOpacity(0.5));
-        buttonZoomOut.setOnMouseExited(event1 -> buttonZoomOut.setOpacity(0.3));
+        buttonZoomIn.setOnMouseEntered(event1 -> buttonZoomIn.setOpacity(1));
+        buttonZoomIn.setOnMouseExited(event1 -> buttonZoomIn.setOpacity(0.5));
+        buttonZoomOut.setOnMouseEntered(event1 -> buttonZoomOut.setOpacity(1));
+        buttonZoomOut.setOnMouseExited(event1 -> buttonZoomOut.setOpacity(0.5));
 
         buttonZoomIn.setOnMouseClicked(event -> {
             height *= 1.5;
@@ -87,6 +87,7 @@ public class ImageViewer {
 
         zoomControls.getChildren().addAll(buttonZoomIn, buttonZoomOut);
         zoomControls.setPickOnBounds(true);
+        zoomControls.setSpacing(10);
         zoomControls.setAlignment(Pos.TOP_LEFT);
         zoomControls.setPadding(new Insets(10));
         if (fileUrl != null) {
@@ -118,10 +119,10 @@ public class ImageViewer {
 
     public HBox controlsBar() {
         HBox hbox = new HBox();
-        hbox.setPadding(new Insets(3, 10, 3, 10));
-        hbox.setSpacing(10);
+        hbox.setPadding(new Insets(10, 10, 10, 10));
+        hbox.setSpacing(20);
         hbox.setAlignment(Pos.CENTER);
-        hbox.setBackground(new Background(new BackgroundFill(Color.LIGHTGREY, CornerRadii.EMPTY, Insets.EMPTY)));
+        hbox.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
 
         Label buttonRotateL = new Label(null, new ImageView(new Image("res/ImageViewerIcons/rotateL.png")));
         Label buttonRotateR = new Label(null, new ImageView(new Image("res/ImageViewerIcons/rotateR.png")));

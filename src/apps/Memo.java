@@ -41,7 +41,7 @@ public class Memo {
         this.chosenFile = chosenFile;
         ++cnt;
         stage = new Stage();
-        stage.setTitle("Memo");
+        stage.setTitle("Notes");
         stage.setScene(new nota().not());
         stage.show();
         stage.setOnCloseRequest(event -> { closeIt(); stage.close();

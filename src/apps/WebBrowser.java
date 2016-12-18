@@ -50,7 +50,7 @@ public class WebBrowser {
         this.id = id;
         this.fileUrl = fileUrl;
         Stage stage = new Stage();
-        stage.setTitle("Browser");
+        stage.setTitle("Vampire Web Browser");
         stage.show();
         stage.setScene(new Scene(webViewScene()));
         if (!checkIntConnection(defaultUrl)) {

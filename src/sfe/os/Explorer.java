@@ -28,7 +28,7 @@ public class Explorer {
     public Explorer(CPU cpu) {
         this.cpu=cpu;
         stage = new Stage();
-        stage.setTitle("Explorer");
+        stage.setTitle("Files");
         stage.setHeight(600);
         stage.setWidth(850);
         stage.setOnCloseRequest(event -> onClose());

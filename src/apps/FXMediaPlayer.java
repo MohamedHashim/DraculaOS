@@ -42,7 +42,7 @@ public class FXMediaPlayer {
         this.id = id;
         this.cpu = cpu;
         stage = new Stage();
-        stage.setTitle("Media Player");
+        stage.setTitle("Music");
 
         if (file != null) {
             this.f = file;
@@ -66,9 +66,9 @@ public class FXMediaPlayer {
             border.setCenter(mediaScene());
         }
         if (type.equals("mp3"))
-            return new Scene(border, 500, 150);
+            return new Scene(border, 500, 350);
         else
-            return new Scene(border, 720, 600);
+            return new Scene(border, 720, 700);
     }
 
     public MenuBar menuBar() {
@@ -117,8 +117,8 @@ public class FXMediaPlayer {
         HBox barControl = new HBox();
         HBox controls = new HBox();
 
-        vBox.setPadding(new Insets(3, 10, 3, 10));
-        vBox.setSpacing(10);
+        vBox.setPadding(new Insets(10, 10, 10, 10));
+        vBox.setSpacing(20);
         vBox.setAlignment(Pos.CENTER);
 
         currentlyPlaying = new Label();
@@ -188,7 +188,7 @@ public class FXMediaPlayer {
             });
 
             controls.setAlignment(Pos.CENTER);
-            controls.setSpacing(10);
+            controls.setSpacing(20);
             controls.getChildren().addAll(backward, play, forward);
         }
 
