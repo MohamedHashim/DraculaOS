@@ -244,10 +244,36 @@ public class Main extends Application {
             }
         });
 
+        Label downloader = new Label(null, new ImageView("res/BrowserIcons/home.png"));
+        downloader.setAlignment(Pos.CENTER);
+        downloader.setOnMouseEntered(event1 -> {
+            downloader.setScaleX(1.5);
+            downloader.setScaleY(1.5);
+        });
+        downloader.setOnMouseExited(event1 -> {
+            downloader.setScaleX(1);
+            downloader.setScaleY(1);
+        });
+        downloader.setOnMouseClicked(event -> {
+            if(event.getButton().equals(MouseButton.PRIMARY)) {
+                if(event.getClickCount() == 1) {
+                    Process p = new Process("downloader");
+                    cpu.addProcess(p);
+                    if(cpu.list.size()==1){
+                        cpu.RR_Schedule();
+                    }
+                    new Downloader(cpu, p.getId());
 
-        appsBar.getChildren().addAll(fileExplorer, imageViewerApp, musicPlayerApp, browserApp, calculator);
-        appsBar.setBackground(new Background(new BackgroundFill(Color.web("#000000", 0), new CornerRadii(5), new Insets(300, 350, 300, 350))));
-        appsBar.setTranslateY(-300);
+                }
+            }
+        });
+
+
+
+
+
+        appsBar.getChildren().addAll(fileExplorer, imageViewerApp, musicPlayerApp, browserApp, calculator,downloader);
+        appsBar.setBackground(new Background(new BackgroundFill(Color.web("#000000", 0.3), new CornerRadii(5), new Insets(0, 350, 0, 350))));
         appsBar.setPadding(new Insets(5, 0, 5, 0));
 
         appsBar.setAlignment(Pos.CENTER);
