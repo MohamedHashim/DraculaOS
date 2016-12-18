@@ -258,7 +258,7 @@ public class Main extends Application {
 
 
 
-        appsBar.getChildren().addAll(fileExplorer, imageViewerApp, musicPlayerApp, browserApp, calculator,downloader);
+        appsBar.getChildren().addAll(fileExplorer, imageViewerApp, musicPlayerApp, browserApp, calculator,memoApp,downloader);
         appsBar.setBackground(new Background(new BackgroundFill(Color.web("#000000", 0), new CornerRadii(5), new Insets(0, 350, 0, 350))));
         appsBar.setPadding(new Insets(5, 0, 5, 0));
         appsBar.setTranslateY(-350);
