@@ -244,7 +244,7 @@ public class Main extends Application {
         });
 
 
-        appsBar.getChildren().addAll(fileExplorer, imageViewerApp, memoApp, musicPlayerApp, videoPlayerApp, browserApp, calculator, xo);
+        appsBar.getChildren().addAll(fileExplorer, imageViewerApp, musicPlayerApp, browserApp, calculator);
         appsBar.setBackground(new Background(new BackgroundFill(Color.web("#000000", 0.3), new CornerRadii(5), new Insets(0, 350, 0, 350))));
         appsBar.setPadding(new Insets(5, 0, 5, 0));
         appsBar.setAlignment(Pos.CENTER);
