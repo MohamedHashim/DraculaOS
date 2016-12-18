@@ -70,12 +70,10 @@ public class Main extends Application {
         Label fileExplorer = new Label(null, new ImageView("res/FileExplorer.png"));
         fileExplorer.setAlignment(Pos.CENTER);
         fileExplorer.setOnMouseEntered(event1 -> {
-            fileExplorer.setScaleX(1);
-            fileExplorer.setScaleY(1);
+            fileExplorer.setTranslateY(-6.0);
         });
         fileExplorer.setOnMouseExited(event1 -> {
-            fileExplorer.setScaleX(1);
-            fileExplorer.setScaleY(1);
+            fileExplorer.setTranslateY(0);
         });
         fileExplorer.setOnMouseClicked(event -> {
             if(event.getButton().equals(MouseButton.PRIMARY)) {
@@ -88,12 +86,10 @@ public class Main extends Application {
         Label imageViewerApp = new Label(null, new ImageView("res/ImageViewer.png"));
         imageViewerApp.setAlignment(Pos.CENTER);
         imageViewerApp.setOnMouseEntered(event1 -> {
-            imageViewerApp.setScaleX(1);
-            imageViewerApp.setScaleY(1);
+            imageViewerApp.setTranslateY(-6.0);
         });
         imageViewerApp.setOnMouseExited(event1 -> {
-            imageViewerApp.setScaleX(1);
-            imageViewerApp.setScaleY(1);
+            imageViewerApp.setTranslateY(0);
         });
         imageViewerApp.setOnMouseClicked(event -> {
             if(event.getButton().equals(MouseButton.PRIMARY)) {
@@ -108,12 +104,10 @@ public class Main extends Application {
         Label memoApp = new Label(null, new ImageView("res/Memo.png"));
         memoApp.setAlignment(Pos.CENTER);
         memoApp.setOnMouseEntered(event1 -> {
-            memoApp.setScaleX(1);
-            memoApp.setScaleY(1);
+            memoApp.setTranslateY(-6.0);
         });
         memoApp.setOnMouseExited(event1 -> {
-            memoApp.setScaleX(1);
-            memoApp.setScaleY(1);
+            memoApp.setTranslateY(0);
         });
         memoApp.setOnMouseClicked(event -> {
             if(event.getButton().equals(MouseButton.PRIMARY)) {
@@ -130,12 +124,10 @@ public class Main extends Application {
         Label musicPlayerApp = new Label(null, new ImageView("res/MusicPlayer.png"));
         musicPlayerApp.setAlignment(Pos.CENTER);
         musicPlayerApp.setOnMouseEntered(event1 -> {
-            musicPlayerApp.setScaleX(1);
-            musicPlayerApp.setScaleY(1);
+            musicPlayerApp.setTranslateY(-6.0);
         });
         musicPlayerApp.setOnMouseExited(event1 -> {
-            musicPlayerApp.setScaleX(1);
-            musicPlayerApp.setScaleY(1);
+            musicPlayerApp.setTranslateY(0);
         });
         musicPlayerApp.setOnMouseClicked(event -> {
             if(event.getButton().equals(MouseButton.PRIMARY)) {
@@ -153,12 +145,10 @@ public class Main extends Application {
         Label videoPlayerApp = new Label(null, new ImageView("res/VideoPlayer.png"));
         videoPlayerApp.setAlignment(Pos.CENTER);
         videoPlayerApp.setOnMouseEntered(event1 -> {
-            videoPlayerApp.setScaleX(1);
-            videoPlayerApp.setScaleY(1);
+            videoPlayerApp.setTranslateY(-6.0);
         });
         videoPlayerApp.setOnMouseExited(event1 -> {
-            videoPlayerApp.setScaleX(1);
-            videoPlayerApp.setScaleY(1);
+            videoPlayerApp.setTranslateY(0);
         });
         videoPlayerApp.setOnMouseClicked(event -> {
             if(event.getButton().equals(MouseButton.PRIMARY)) {
@@ -173,12 +163,10 @@ public class Main extends Application {
         Label browserApp = new Label(null, new ImageView("res/Space.png"));
         browserApp.setAlignment(Pos.CENTER);
         browserApp.setOnMouseEntered(event1 -> {
-            browserApp.setScaleX(1);
-            browserApp.setScaleY(1);
+            browserApp.setTranslateY(-6.0);
         });
         browserApp.setOnMouseExited(event1 -> {
-            browserApp.setScaleX(1);
-            browserApp.setScaleY(1);
+            browserApp.setTranslateY(0);
         });
         browserApp.setOnMouseClicked(event -> {
             if(event.getButton().equals(MouseButton.PRIMARY)) {
@@ -247,12 +235,10 @@ public class Main extends Application {
         Label downloader = new Label(null, new ImageView("res/Threads.png"));
         downloader.setAlignment(Pos.CENTER);
         downloader.setOnMouseEntered(event1 -> {
-            downloader.setScaleX(1);
-            downloader.setScaleY(1);
+            downloader.setTranslateY(-6.0);
         });
         downloader.setOnMouseExited(event1 -> {
-            downloader.setScaleX(1);
-            downloader.setScaleY(1);
+            downloader.setTranslateY(0);
         });
         downloader.setOnMouseClicked(event -> {
             if(event.getButton().equals(MouseButton.PRIMARY)) {
