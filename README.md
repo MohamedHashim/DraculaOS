@@ -1,9 +1,10 @@
-# Gravity OS
+# Dracula OS
+
 
 Virtual Operating System Demo
 
-Gravity OS simulates real Operating Systems, with awesome user interface, and high functionality via built-in apps.
-Gravity OS tracks processes inside our virtual OS via IDE log and recording every detail about it.
+Dracula OS simulates real Operating Systems, with awesome user interface, and high functionality via built-in apps.
+Dracula OS tracks processes inside our virtual OS via IDE log and recording every detail about it.
 
 #####Modules implemented:
 - File system module.

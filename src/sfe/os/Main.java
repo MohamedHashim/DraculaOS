@@ -8,7 +8,6 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
-import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.*;
@@ -20,7 +19,6 @@ import javafx.util.Duration;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.concurrent.*;
 
 public class Main extends Application {
 
@@ -106,7 +104,7 @@ public class Main extends Application {
         BorderPane desktop = new BorderPane();
 
         desktop.setBackground(new Background(new BackgroundImage(
-                new Image("res/gravity.jpg"),
+                new Image("res/dracula.jpg"),
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundRepeat.NO_REPEAT,
                 BackgroundPosition.DEFAULT,
