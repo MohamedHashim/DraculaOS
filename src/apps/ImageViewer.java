@@ -25,11 +25,12 @@ public class ImageViewer {
     Stage stage;
     ImageView imgView = new ImageView();
     static CPU cpu;
-    public ImageViewer(File fileUrl,int id ,CPU cpu) {
-        this.cpu=cpu;
+
+    public ImageViewer(File fileUrl, int id, CPU cpu) {
+        this.cpu = cpu;
         stage = new Stage();
         stage.setTitle("Image Viewer");
-        this.id=id;
+        this.id = id;
         BorderPane border = new BorderPane();
         border.setTop(menuBar());
         border.setCenter(viewer(fileUrl));
@@ -40,7 +41,7 @@ public class ImageViewer {
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
-                System.out.println("Image Viewer with id :"+id+" Is removed");
+                System.out.println("Image Viewer with id :" + id + " Is removed");
                 cpu.RemoveProcess(id);
             }
         });
@@ -53,7 +54,10 @@ public class ImageViewer {
         Menu fileMenu = new Menu("File");
         {
             MenuItem open = new MenuItem("Open...");
-            open.setOnAction(event -> { new FileChooser("jpg", "", "open",cpu); stage.close(); } );
+            open.setOnAction(event -> {
+                new FileChooser("jpg", "", "open", cpu);
+                stage.close();
+            });
             MenuItem close = new MenuItem("Exit");
             close.setOnAction(event -> stage.close());
             fileMenu.getItems().addAll(open, close);

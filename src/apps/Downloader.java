@@ -28,11 +28,12 @@ public class Downloader {
     int id;
     Stage stage;
     static CPU cpu;
-    public Downloader( CPU cpu, int id ) {
-        this.cpu=cpu;
+
+    public Downloader(CPU cpu, int id) {
+        this.cpu = cpu;
         stage = new Stage();
         stage.setTitle("Downloader");
-        this.id=id;
+        this.id = id;
         BorderPane border = new BorderPane();
         border.setTop(menuBar());
         stage.setScene(new Scene(createContent()));
@@ -40,11 +41,12 @@ public class Downloader {
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             @Override
             public void handle(WindowEvent event) {
-                System.out.println("Image Viewer with id :"+id+" Is removed");
+                System.out.println("Image Viewer with id :" + id + " Is removed");
                 cpu.RemoveProcess(id);
             }
         });
     }
+
     private Parent createContent() {
         VBox root = new VBox();
         root.setPrefSize(400, 600);
@@ -68,6 +70,7 @@ public class Downloader {
 
         return root;
     }
+
     private class DownloadTask extends Task<Void> {
 
         private String url;
@@ -108,6 +111,7 @@ public class Downloader {
             System.out.println("photo downloaded successfully");
         }
     }
+
     public MenuBar menuBar() {
         MenuBar menuBar = new MenuBar();
         menuBar.setBackground(new Background(new BackgroundFill(Color.LIGHTGREY, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -115,7 +119,10 @@ public class Downloader {
         Menu fileMenu = new Menu("File");
         {
             MenuItem open = new MenuItem("Open...");
-            open.setOnAction(event -> { new FileChooser("jpg", "", "open",cpu); stage.close(); } );
+            open.setOnAction(event -> {
+                new FileChooser("jpg", "", "open", cpu);
+                stage.close();
+            });
             MenuItem close = new MenuItem("Exit");
             close.setOnAction(event -> stage.close());
             fileMenu.getItems().addAll(open, close);

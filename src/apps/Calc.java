@@ -34,18 +34,19 @@ public class Calc {
 
     private Op curOp = Op.NOOP;
     private Op stackOp = Op.NOOP;
-int id;
-static CPU cpu=new CPU();
-    public Calc(CPU cpu,int id) {
-        this.id=id;
-        this.cpu=cpu;
+    int id;
+    static CPU cpu = new CPU();
+
+    public Calc(CPU cpu, int id) {
+        this.id = id;
+        this.cpu = cpu;
         Stage stage = new Stage();
         final TextField screen = createScreen();
         final TilePane buttons = createButtons();
 
         stage.setTitle("Numbers");
         stage.setOnCloseRequest(event -> {
-            System.out.println("Calculator with id : "+id+" Is removed");
+            System.out.println("Calculator with id : " + id + " Is removed");
             cpu.RemoveProcess(id);
         });
         stage.initStyle(StageStyle.UTILITY);

@@ -20,8 +20,9 @@ public class FileChooser {
     private String SAVE = "save", operation = SAVE, realPath, fileExtension;
     TextField fileName = new TextField();
     HBox hBox;
-    static  CPU cpu;
-    public FileChooser(String fileExtension, String realPath, String operation,CPU cpu) {
+    static CPU cpu;
+
+    public FileChooser(String fileExtension, String realPath, String operation, CPU cpu) {
         this.cpu = cpu;
         this.operation = operation;
         this.realPath = realPath;
@@ -37,16 +38,18 @@ public class FileChooser {
         stage.setWidth(750);
         explorer = new BorderPane();
         action = new Button(operation.equals(SAVE) ? "Save" : "Open");
-        if(!fileName.getText().isEmpty()) { action.setDisable(false); }
+        if (!fileName.getText().isEmpty()) {
+            action.setDisable(false);
+        }
         action.setOnAction(event -> {
-            if(operation.equals(SAVE)) {
+            if (operation.equals(SAVE)) {
                 directory.File fle = new directory.File(fileName.getText().trim(), "txt", Main.fileSystem.getCurrentFolder().getPath() + "/" + fileName, Main.fileSystem.getCurrentFolder(), "r/w");
                 fle.setRealPath(realPath);
                 Memo.chosenFile = fle;
                 Main.fileSystem.getCurrentFolder().getChildren().add(fle);
                 Main.fileSystem.store();
                 Main.fileSystem.goRoot();
-            }else {
+            } else {
                 Main.fileSystem.open(Main.fileSystem.getSelected());
             }
             stage.close();
@@ -57,7 +60,7 @@ public class FileChooser {
             Main.fileSystem.back();
             refresh();
             back.setDisable(false);
-            if(Main.fileSystem.getCurrentFolder() == Main.fileSystem.getRoot()) {
+            if (Main.fileSystem.getCurrentFolder() == Main.fileSystem.getRoot()) {
                 back.setDisable(true);
             }
         });
@@ -68,7 +71,7 @@ public class FileChooser {
         hBox.setPadding(new Insets(7));
         hBox.setSpacing(10);
         hBox.getChildren().addAll(new HBox(new Label("  Name:\t"), fileName), action);
-        if(operation.equals(SAVE))
+        if (operation.equals(SAVE))
             explorer.setBottom(hBox);
         refresh();
         stage.setScene(new Scene(explorer));
@@ -97,8 +100,8 @@ public class FileChooser {
             view[i].setWrapText(true);
             setIcon(dir, view[i]);
             view[i].setOnMouseClicked(event -> {
-                if(event.getButton().equals(MouseButton.PRIMARY)) {
-                    if(event.getClickCount() == 2) {
+                if (event.getButton().equals(MouseButton.PRIMARY)) {
+                    if (event.getClickCount() == 2) {
                         Main.fileSystem.open(dir);
                         if (dir instanceof directory.Folder) {
                             back.setDisable(false);
@@ -119,7 +122,7 @@ public class FileChooser {
                 currView.setScaleX(1);
                 currView.setScaleY(1);
             });
-            if(dir instanceof Folder || (((File) dir).getExtension().equals(this.fileExtension) || (this.fileExtension.equals("mp3") && ((File) dir).getExtension().equals("mp4"))))
+            if (dir instanceof Folder || (((File) dir).getExtension().equals(this.fileExtension) || (this.fileExtension.equals("mp3") && ((File) dir).getExtension().equals("mp4"))))
                 tiles.getChildren().add(view[i]);
         }
     }

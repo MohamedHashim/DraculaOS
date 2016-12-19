@@ -30,7 +30,7 @@ import java.util.Map;
 public class TicTacToe {
 
     int id;
-    static CPU cpu=new CPU();
+    static CPU cpu = new CPU();
 
     public TicTacToe(CPU cpu, int id) {
         Stage stage = new Stage();
@@ -44,7 +44,7 @@ public class TicTacToe {
         );
 
         stage.setOnCloseRequest(event -> {
-            System.out.println("XO Game with id : "+id+" Is removed");
+            System.out.println("XO Game with id : " + id + " Is removed");
             cpu.RemoveProcess(id);
         });
 

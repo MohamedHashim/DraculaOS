@@ -30,9 +30,10 @@ public class FileSystem {
     String whichProcess;
 
 
-    static CPU cpu=new CPU();
+    static CPU cpu = new CPU();
+
     public FileSystem(CPU cpu) {
-        this.cpu=cpu;
+        this.cpu = cpu;
         root = new Folder("root", "/home", null);
         currentFolder = root;
         this.seeds(root, "src/storage");
@@ -44,7 +45,9 @@ public class FileSystem {
         return this.root;
     }
 
-    void goRoot() { this.currentFolder = root;  }
+    void goRoot() {
+        this.currentFolder = root;
+    }
 
     public void select(Directory selected, Label view) {
         this.selected = selected;
@@ -100,7 +103,7 @@ public class FileSystem {
                 } else {
                     String pth = toBeOpened.getRealPath();
                     int idx = 0;
-                    if(pth != null) {
+                    if (pth != null) {
                         pth.indexOf("/storage");
                         pth = pth.substring(idx);
                         pth = pth.replaceAll("%20", " ");
@@ -118,51 +121,50 @@ public class FileSystem {
                                 Process p = new Process("TextEditor");
 
                                 cpu.addProcess(p);
-                                if(cpu.list.size()==1){
+                                if (cpu.list.size() == 1) {
                                     cpu.RR_Schedule();
                                 }
                                 txtEditorList.add(new Memo((File) toBeOpened, p.getId(), cpu));
-                            }
-                            else {
+                            } else {
                                 System.out.print("Synchronized!\n");
                                 JOptionPane.showMessageDialog(null, "The file is opened!", "Warning", JOptionPane.WARNING_MESSAGE);
                             }
                             break;
                         case "jpg":
                             System.out.println("Opening image viewer");
-                            Process p=new Process("ImageViewer");
+                            Process p = new Process("ImageViewer");
                             cpu.addProcess(p);
-                            if(cpu.list.size()==1) {
+                            if (cpu.list.size() == 1) {
                                 cpu.RR_Schedule();
                             }
-                            new ImageViewer(new java.io.File(pth),p.getId(),cpu);
+                            new ImageViewer(new java.io.File(pth), p.getId(), cpu);
                         case "mp3":
                             System.out.println("Opening music player");
-                            Process p1=new Process("MusicPlayer");
+                            Process p1 = new Process("MusicPlayer");
                             cpu.addProcess(p1);
-                            if(cpu.list.size()==1){
+                            if (cpu.list.size() == 1) {
                                 cpu.RR_Schedule();
                             }
-                            new FXMediaPlayer(new java.io.File(pth),p1.getId(),cpu);
+                            new FXMediaPlayer(new java.io.File(pth), p1.getId(), cpu);
                             break;
                         case "mp4":
 
                             System.out.println("Opening video player");
-                            Process p2=new Process("vedioPlayer");
+                            Process p2 = new Process("vedioPlayer");
                             cpu.addProcess(p2);
-                            if(cpu.list.size()==1){
+                            if (cpu.list.size() == 1) {
                                 cpu.RR_Schedule();
                             }
-                            new FXMediaPlayer(new java.io.File(pth),p2.getId(),cpu);
+                            new FXMediaPlayer(new java.io.File(pth), p2.getId(), cpu);
                             break;
                         case "html":
                             System.out.println("Opening browser");
-                            Process p3=new Process("WebBrowser");
+                            Process p3 = new Process("WebBrowser");
                             cpu.addProcess(p3);
-                            if(cpu.list.size()==1){
+                            if (cpu.list.size() == 1) {
                                 cpu.RR_Schedule();
                             }
-                            new WebBrowser(WebBrowser.defaultUrl,p3.getId(),cpu);
+                            new WebBrowser(WebBrowser.defaultUrl, p3.getId(), cpu);
                             break;
                     }
                 }
@@ -237,18 +239,18 @@ public class FileSystem {
         String name, extension, permission = "";
         java.io.File resDir = (new java.io.File(path));
         if (resDir.listFiles() == null) return;
-        for(java.io.File currFile: resDir.listFiles()) {
-            if(currFile.isDirectory()) {
+        for (java.io.File currFile : resDir.listFiles()) {
+            if (currFile.isDirectory()) {
                 name = currFile.getName();
                 Folder folder = new Folder(name, currPos.getPath() + "/" + name, currPos);
                 folder.setRealPath(currFile.getPath());
                 currPos.getChildren().add(folder);
                 seeds(folder, currFile.getPath());
-            }else {
+            } else {
                 name = currFile.getName().substring(0, currFile.getName().indexOf('.'));
                 extension = currFile.getName().substring(currFile.getName().indexOf('.') + 1);
                 permission = extension.equals(".txt") ? "r/w" : "r";
-                File fle = new File(name, extension, currPos.getPath() + "/" + name + "." + extension,currPos, permission);
+                File fle = new File(name, extension, currPos.getPath() + "/" + name + "." + extension, currPos, permission);
                 fle.setRealPath(currFile.getAbsolutePath());
                 currPos.getChildren().add(fle);
             }
@@ -258,12 +260,19 @@ public class FileSystem {
     void printAll() {
         printAll(this.root, 0);
     }
+
     void printAll(Directory current, int cnt) {
-        if (current == null) { return; }
+        if (current == null) {
+            return;
+        }
         int t = cnt;
-        while (t-- > 0) { System.out.print("-"); }
+        while (t-- > 0) {
+            System.out.print("-");
+        }
         System.out.println(current.getName() + "  " + current.getSize());
-        if (current instanceof File) { return; }
+        if (current instanceof File) {
+            return;
+        }
         for (int i = 0; i < ((Folder) current).getChildren().size(); ++i) {
             printAll(((Folder) current).getChildren().get(i), cnt + 2);
         }

@@ -27,13 +27,14 @@ public class Main extends Application {
     static CPU cpu = new CPU();
     Button lock;
     PathTransition pathTransition;
+
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-                initUI(primaryStage);
+        initUI(primaryStage);
     }
 
     private void initUI(Stage stage) {
@@ -78,25 +79,25 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.show();
 
-      lock.setOnMouseClicked(new EventHandler<MouseEvent>() {
-          @Override
-          public void handle(MouseEvent event) {
+        lock.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
 //              try {
 //                  TimeUnit.SECONDS.sleep(2);
 //              } catch (InterruptedException e) {
 //                  e.printStackTrace();
 //              }
 
-              stage.setTitle("Desktop");
-              stage.setFullScreen(true);
-              stage.setFullScreenExitHint("");
-              stage.setScene(desktopScene());
-              fileSystem = new FileSystem(cpu);
-              stage.show();
+                stage.setTitle("Desktop");
+                stage.setFullScreen(true);
+                stage.setFullScreenExitHint("");
+                stage.setScene(desktopScene());
+                fileSystem = new FileSystem(cpu);
+                stage.show();
 
 
-          }
-      });
+            }
+        });
 
     }
 

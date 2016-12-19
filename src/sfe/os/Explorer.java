@@ -23,10 +23,11 @@ public class Explorer {
     private ContextMenu rightClickMenu4Tiles = null;
     private BorderPane explorer;
     private Button back;
-    private boolean mark=false;
-    static  CPU cpu=new CPU();
+    private boolean mark = false;
+    static CPU cpu = new CPU();
+
     public Explorer(CPU cpu) {
-        this.cpu=cpu;
+        this.cpu = cpu;
         stage = new Stage();
         stage.setTitle("Files");
         stage.setHeight(600);
@@ -42,7 +43,7 @@ public class Explorer {
     }
 
 
-    private void onClose(){
+    private void onClose() {
         Main.fileSystem.store();
         Main.fileSystem.goRoot();
         stage.close();
@@ -61,20 +62,34 @@ public class Explorer {
             MenuItem newFileMenu = new MenuItem("New File");
             newFileMenu.setOnAction(event -> newFileDialog());
             MenuItem close = new MenuItem("Close");
-            close.setOnAction(event ->  onClose());
+            close.setOnAction(event -> onClose());
             fileMenu.getItems().addAll(newFileMenu, close);
         }
 
         Menu editMenu = new Menu("Edit");
         {
             MenuItem copyMenu = new MenuItem("Copy");
-            copyMenu.setOnAction(event -> {Main.fileSystem.copy(Main.fileSystem.getSelected()); refresh();});
+            copyMenu.setOnAction(event -> {
+                Main.fileSystem.copy(Main.fileSystem.getSelected());
+                refresh();
+            });
             MenuItem cutMenu = new MenuItem("Cut");
-            cutMenu.setOnAction(event -> {Main.fileSystem.cut(Main.fileSystem.getSelected()); refresh(); });
+            cutMenu.setOnAction(event -> {
+                Main.fileSystem.cut(Main.fileSystem.getSelected());
+                refresh();
+            });
             MenuItem pasteMenu = new MenuItem("Paste");
-            pasteMenu.setOnAction(event -> {Main.fileSystem.paste(); refresh(); mark=false;});
+            pasteMenu.setOnAction(event -> {
+                Main.fileSystem.paste();
+                refresh();
+                mark = false;
+            });
             MenuItem deleteMenu = new MenuItem("Delete");
-            deleteMenu.setOnAction(event -> {Main.fileSystem.delete(Main.fileSystem.getSelected()); refresh(); mark=false;});
+            deleteMenu.setOnAction(event -> {
+                Main.fileSystem.delete(Main.fileSystem.getSelected());
+                refresh();
+                mark = false;
+            });
 
             editMenu.getItems().addAll(copyMenu, cutMenu, pasteMenu, deleteMenu);
         }
@@ -86,33 +101,53 @@ public class Explorer {
             refresh();
             if (Main.fileSystem.getCurrentFolder().getName().equals("root")) {
                 back.setDisable(true);
-                mark=false;
+                mark = false;
             }
         });
         Button newFile = new Button();
         newFile.setTooltip(new Tooltip("New File"));
         newFile.setGraphic(new ImageView("res/ExplorerIcons/newFile.png"));
-        newFile.setOnAction(event -> { newFileDialog(); mark=false; });
+        newFile.setOnAction(event -> {
+            newFileDialog();
+            mark = false;
+        });
         Button newFolder = new Button();
         newFolder.setTooltip(new Tooltip("New Folder"));
         newFolder.setGraphic(new ImageView("res/ExplorerIcons/newFolder.png"));
-        newFolder.setOnAction(event -> { newFolderDialog(); mark=false; });
+        newFolder.setOnAction(event -> {
+            newFolderDialog();
+            mark = false;
+        });
         Button copyBtn = new Button();
         copyBtn.setTooltip(new Tooltip("Copy"));
         copyBtn.setGraphic(new ImageView("res/ExplorerIcons/copy.png"));
-        copyBtn.setOnAction(event -> {Main.fileSystem.copy(Main.fileSystem.getSelected()); refresh();});
+        copyBtn.setOnAction(event -> {
+            Main.fileSystem.copy(Main.fileSystem.getSelected());
+            refresh();
+        });
         Button cutBtn = new Button();
         cutBtn.setTooltip(new Tooltip("Cut"));
         cutBtn.setGraphic(new ImageView("res/ExplorerIcons/cut.png"));
-        cutBtn.setOnAction(event -> {Main.fileSystem.cut(Main.fileSystem.getSelected()); refresh(); });
+        cutBtn.setOnAction(event -> {
+            Main.fileSystem.cut(Main.fileSystem.getSelected());
+            refresh();
+        });
         Button pasteBtn = new Button();
         pasteBtn.setTooltip(new Tooltip("Paste"));
         pasteBtn.setGraphic(new ImageView("res/ExplorerIcons/paste.png"));
-        pasteBtn.setOnAction(event -> { Main.fileSystem.paste(); refresh(); mark=false;});
+        pasteBtn.setOnAction(event -> {
+            Main.fileSystem.paste();
+            refresh();
+            mark = false;
+        });
         Button delete = new Button();
         delete.setTooltip(new Tooltip("Delete"));
         delete.setGraphic(new ImageView("res/ExplorerIcons/delete.png"));
-        delete.setOnAction(event -> {Main.fileSystem.delete(Main.fileSystem.getSelected()); refresh(); mark=false;});
+        delete.setOnAction(event -> {
+            Main.fileSystem.delete(Main.fileSystem.getSelected());
+            refresh();
+            mark = false;
+        });
 
         toolBar.getItems().addAll(back, newFile, newFolder, copyBtn, cutBtn, pasteBtn, delete);
 
@@ -154,14 +189,14 @@ public class Explorer {
             setIcon(dir, view[i]);
             final Label currView = view[i];
             view[i].setOnMouseClicked(event -> {
-                if(event.getButton().equals(MouseButton.PRIMARY)) {
-                    if(event.getClickCount() == 1) {
-                        if(!mark) {
+                if (event.getButton().equals(MouseButton.PRIMARY)) {
+                    if (event.getClickCount() == 1) {
+                        if (!mark) {
                             Main.fileSystem.select(dir, currView);
                             mark = true;
                         }
                     }
-                    if(event.getClickCount() == 2) {
+                    if (event.getClickCount() == 2) {
                         mark = false;
                         Main.fileSystem.open(dir);
                         if (dir instanceof Folder) {
@@ -179,7 +214,9 @@ public class Explorer {
                 currView.setScaleX(1);
                 currView.setScaleY(1);
             });
-            { tiles.getChildren().add(view[i]); }
+            {
+                tiles.getChildren().add(view[i]);
+            }
         }
     }
 
@@ -213,20 +250,28 @@ public class Explorer {
     }
 
     private void tilePaneRightClickContextMenu(MouseEvent event) {
-        if(rightClickMenu4Tiles == null) { rightClickMenu4Tiles = new ContextMenu(); }
-        else if(rightClickMenu4Tiles.getItems().size() > 0) {rightClickMenu4Tiles.getItems().clear();}
+        if (rightClickMenu4Tiles == null) {
+            rightClickMenu4Tiles = new ContextMenu();
+        } else if (rightClickMenu4Tiles.getItems().size() > 0) {
+            rightClickMenu4Tiles.getItems().clear();
+        }
         MenuItem newFolderItem = new MenuItem("New Folder");
         MenuItem newFileItem = new MenuItem("New File");
         MenuItem pasteItem = new MenuItem("Paste");
         MenuItem propertiesItem = new MenuItem("Properties");
         newFolderItem.setOnAction(event1 -> newFolderDialog());
-        newFileItem.setOnAction(event1 ->  newFileDialog());
-        pasteItem.setOnAction(event1 -> { Main.fileSystem.paste(); refresh(); });
-        propertiesItem.setOnAction(event1 -> { propertyDialog(Main.fileSystem.getCurrentFolder()); });
+        newFileItem.setOnAction(event1 -> newFileDialog());
+        pasteItem.setOnAction(event1 -> {
+            Main.fileSystem.paste();
+            refresh();
+        });
+        propertiesItem.setOnAction(event1 -> {
+            propertyDialog(Main.fileSystem.getCurrentFolder());
+        });
         SeparatorMenuItem separatorMenuItem1 = new SeparatorMenuItem();
         SeparatorMenuItem separatorMenuItem2 = new SeparatorMenuItem();
         rightClickMenu4Tiles.getItems().addAll(newFolderItem, newFileItem, separatorMenuItem1, pasteItem, separatorMenuItem2, propertiesItem);
-        if(event.getButton().equals(MouseButton.SECONDARY)
+        if (event.getButton().equals(MouseButton.SECONDARY)
                 && (!event.getTarget().toString().contains("label") && !event.getTarget().toString().contains("Label"))) {
             mark = false;
             Main.fileSystem.select(null, null);
@@ -234,7 +279,7 @@ public class Explorer {
         } else if (event.getButton().equals(MouseButton.PRIMARY)
                 && (!event.getTarget().toString().contains("label") && !event.getTarget().toString().contains("Label"))) {
             refresh();
-            mark=false;
+            mark = false;
             Main.fileSystem.select(null, null);
             rightClickMenu4Tiles.hide();
         } else {
@@ -325,31 +370,31 @@ public class Explorer {
         refresh();
     }
 
-    public void propertyDialog(Directory dir){
+    public void propertyDialog(Directory dir) {
         Stage propertyStage = new Stage();
         propertyStage.setTitle("Properties");
         propertyStage.setResizable(false);
 
-        GridPane root= new GridPane();
+        GridPane root = new GridPane();
         root.setHgap(10);
         root.setVgap(5);
 
         Label nameLabel = new Label();
         setIcon(dir, nameLabel);
-        TextField name =  new TextField(dir.getName());
+        TextField name = new TextField(dir.getName());
         name.setEditable(false);
         root.add(nameLabel, 1, 1);
         root.add(name, 2, 1);
 
         Label typeLabel = new Label("Type: ");
-        TextField type=new TextField();
+        TextField type = new TextField();
         type.setEditable(false);
         root.add(typeLabel, 1, 2);
         root.add(type, 2, 2);
 
         System.out.println(dir.getRealPath());
         Label sizeLabel = new Label("Size: ");
-        TextField size =  new TextField(dir.getSize() + "");
+        TextField size = new TextField(dir.getSize() + "");
         size.setEditable(false);
         root.add(sizeLabel, 1, 3);
         root.add(size, 2, 3);
@@ -369,7 +414,7 @@ public class Explorer {
         contains.setEditable(false);
 
 
-        if (dir  instanceof Folder) {
+        if (dir instanceof Folder) {
             type.setText("Folder");
             contains.setText(((Folder) dir).getChildren().size() + "");
             root.add(children, 1, 5);
@@ -382,7 +427,7 @@ public class Explorer {
         }
 
 
-        propertyStage.setScene(new Scene(root,290,300));
+        propertyStage.setScene(new Scene(root, 290, 300));
         propertyStage.show();
     }
 
