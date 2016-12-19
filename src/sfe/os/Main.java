@@ -1,44 +1,105 @@
 package sfe.os;
 
 import apps.*;
-import javafx.animation.Animation;
-import javafx.animation.KeyFrame;
-import javafx.animation.Timeline;
+import javafx.animation.*;
 import javafx.application.Application;
+import javafx.event.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
 import javafx.scene.effect.Glow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseButton;
+import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.concurrent.*;
 
 public class Main extends Application {
 
     Stage mainStage;
     public static FileSystem fileSystem;
     static CPU cpu = new CPU();
+    Button lock;
+    PathTransition pathTransition;
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
-        mainStage = primaryStage;
-        primaryStage.setTitle("Desktop");
-        primaryStage.setFullScreen(true);
-        primaryStage.setFullScreenExitHint("");
-        primaryStage.setScene(desktopScene());
-        fileSystem = new FileSystem(cpu);
-        primaryStage.show();
+    public void start(Stage primaryStage) throws Exception {
+                initUI(primaryStage);
+    }
+
+    private void initUI(Stage stage) {
+
+
+        lock = new Button();
+        lock.setAlignment(Pos.CENTER);
+        Image image = new Image(Main.class.getResource("/res/arrow.png").toExternalForm(), 100, 100, true, true);
+        ImageView imageView = new ImageView(image);
+
+        imageView.setFitWidth(50);
+
+        imageView.setFitHeight(35);
+
+        lock.setGraphic(imageView);
+
+
+        Path path = new Path();
+        MoveTo moveTo = new MoveTo(1000, 650);
+        moveTo.setAbsolute(true);
+        path.getElements().add(moveTo);
+        LineTo lineTo = new LineTo(650, 650);
+        path.getElements().add(lineTo);
+        pathTransition = new PathTransition();
+//        pathTransition.setDuration(Duration.millis(3000));
+        pathTransition.setPath(path);
+        pathTransition.setNode(lock);
+        pathTransition.setCycleCount(1);
+        path.setVisible(false);
+        pathTransition.play();
+
+        lock.setOnAction(me -> pathTransition.play());
+
+
+        Pane root = new Pane();
+        root.setStyle("-fx-background-image: url(res/Lock.jpg); -fx-padding: 20; -fx-font-size: 20;");
+        root.getChildren().addAll(path, lock);
+
+
+        Scene scene = new Scene(root, 1366, 768);
+        stage.setTitle("Desktop");
+        stage.setScene(scene);
+        stage.show();
+
+      lock.setOnMouseClicked(new EventHandler<MouseEvent>() {
+          @Override
+          public void handle(MouseEvent event) {
+//              try {
+//                  TimeUnit.SECONDS.sleep(2);
+//              } catch (InterruptedException e) {
+//                  e.printStackTrace();
+//              }
+
+              stage.setTitle("Desktop");
+              stage.setFullScreen(true);
+              stage.setFullScreenExitHint("");
+              stage.setScene(desktopScene());
+              fileSystem = new FileSystem(cpu);
+              stage.show();
+
+
+          }
+      });
+
     }
 
     private Scene desktopScene() {
@@ -76,8 +137,8 @@ public class Main extends Application {
             fileExplorer.setTranslateY(0);
         });
         fileExplorer.setOnMouseClicked(event -> {
-            if(event.getButton().equals(MouseButton.PRIMARY)) {
-                if(event.getClickCount() == 1) {
+            if (event.getButton().equals(MouseButton.PRIMARY)) {
+                if (event.getClickCount() == 1) {
                     new Explorer(cpu);
                 }
             }
@@ -92,12 +153,12 @@ public class Main extends Application {
             imageViewerApp.setTranslateY(0);
         });
         imageViewerApp.setOnMouseClicked(event -> {
-            if(event.getButton().equals(MouseButton.PRIMARY)) {
-                if(event.getClickCount() == 1) {
-                    Process p=new Process("Image viewer");
+            if (event.getButton().equals(MouseButton.PRIMARY)) {
+                if (event.getClickCount() == 1) {
+                    Process p = new Process("Image viewer");
                     cpu.addProcess(p);
                     cpu.RR_Schedule();
-                    new ImageViewer(null,p.getId(), cpu);
+                    new ImageViewer(null, p.getId(), cpu);
                 }
             }
         });
@@ -110,11 +171,11 @@ public class Main extends Application {
             memoApp.setTranslateY(0);
         });
         memoApp.setOnMouseClicked(event -> {
-            if(event.getButton().equals(MouseButton.PRIMARY)) {
-                if(event.getClickCount() == 1) {
+            if (event.getButton().equals(MouseButton.PRIMARY)) {
+                if (event.getClickCount() == 1) {
                     Process p = new Process("Memo");
                     cpu.addProcess(p);
-                    if(cpu.list.size()==1){
+                    if (cpu.list.size() == 1) {
                         cpu.RR_Schedule();
                     }
                     new Memo(null, p.getId(), cpu);
@@ -130,11 +191,11 @@ public class Main extends Application {
             musicPlayerApp.setTranslateY(0);
         });
         musicPlayerApp.setOnMouseClicked(event -> {
-            if(event.getButton().equals(MouseButton.PRIMARY)) {
-                if(event.getClickCount() == 1) {
+            if (event.getButton().equals(MouseButton.PRIMARY)) {
+                if (event.getClickCount() == 1) {
                     Process p = new Process("MusicPlayer");
                     cpu.addProcess(p);
-                    if(cpu.list.size()==1){
+                    if (cpu.list.size() == 1) {
                         cpu.RR_Schedule();
                     }
                     new FXMediaPlayer(null, p.getId(), cpu);
@@ -151,8 +212,8 @@ public class Main extends Application {
             videoPlayerApp.setTranslateY(0);
         });
         videoPlayerApp.setOnMouseClicked(event -> {
-            if(event.getButton().equals(MouseButton.PRIMARY)) {
-                if(event.getClickCount() == 1) {
+            if (event.getButton().equals(MouseButton.PRIMARY)) {
+                if (event.getClickCount() == 1) {
                     Process p1 = new Process("MediaPlayer");
                     cpu.addProcess(p1);
                     new FXMediaPlayer(null, p1.getId(), cpu);
@@ -169,12 +230,12 @@ public class Main extends Application {
             browserApp.setTranslateY(0);
         });
         browserApp.setOnMouseClicked(event -> {
-            if(event.getButton().equals(MouseButton.PRIMARY)) {
-                if(event.getClickCount() == 1) {
+            if (event.getButton().equals(MouseButton.PRIMARY)) {
+                if (event.getClickCount() == 1) {
                     System.out.println("Opening the WebBrowser...");
                     Process p = new Process("WebBrowser");
                     cpu.addProcess(p);
-                    if(cpu.list.size()==1){
+                    if (cpu.list.size() == 1) {
                         cpu.RR_Schedule();
                     }
                     new WebBrowser(WebBrowser.defaultUrl, p.getId(), cpu);
@@ -194,15 +255,15 @@ public class Main extends Application {
 
         });
         calculator.setOnMouseClicked(event -> {
-            if(event.getButton().equals(MouseButton.PRIMARY)) {
+            if (event.getButton().equals(MouseButton.PRIMARY)) {
 
-                if(event.getClickCount() == 1) {
+                if (event.getClickCount() == 1) {
                     Process p = new Process("Calculator");
                     cpu.addProcess(p);
-                    if(cpu.list.size()==1){
+                    if (cpu.list.size() == 1) {
                         cpu.RR_Schedule();
                     }
-                    new Calc(cpu,p.getId());
+                    new Calc(cpu, p.getId());
 
                 }
             }
@@ -219,11 +280,11 @@ public class Main extends Application {
             xo.setScaleY(1);
         });
         xo.setOnMouseClicked(event -> {
-            if(event.getButton().equals(MouseButton.PRIMARY)) {
-                if(event.getClickCount() == 1) {
+            if (event.getButton().equals(MouseButton.PRIMARY)) {
+                if (event.getClickCount() == 1) {
                     Process p = new Process("xo");
                     cpu.addProcess(p);
-                    if(cpu.list.size()==1){
+                    if (cpu.list.size() == 1) {
                         cpu.RR_Schedule();
                     }
                     new TicTacToe(cpu, p.getId());
@@ -241,11 +302,11 @@ public class Main extends Application {
             downloader.setTranslateY(0);
         });
         downloader.setOnMouseClicked(event -> {
-            if(event.getButton().equals(MouseButton.PRIMARY)) {
-                if(event.getClickCount() == 1) {
+            if (event.getButton().equals(MouseButton.PRIMARY)) {
+                if (event.getClickCount() == 1) {
                     Process p = new Process("downloader");
                     cpu.addProcess(p);
-                    if(cpu.list.size()==1){
+                    if (cpu.list.size() == 1) {
                         cpu.RR_Schedule();
                     }
                     new Downloader(cpu, p.getId());
@@ -255,10 +316,7 @@ public class Main extends Application {
         });
 
 
-
-
-
-        appsBar.getChildren().addAll(fileExplorer, imageViewerApp, musicPlayerApp, browserApp, calculator,memoApp,downloader);
+        appsBar.getChildren().addAll(fileExplorer, imageViewerApp, musicPlayerApp, browserApp, calculator, memoApp, downloader);
         appsBar.setBackground(new Background(new BackgroundFill(Color.web("#000000", 0), new CornerRadii(5), new Insets(0, 350, 0, 350))));
         appsBar.setPadding(new Insets(5, 0, 5, 0));
         appsBar.setTranslateY(-350);
