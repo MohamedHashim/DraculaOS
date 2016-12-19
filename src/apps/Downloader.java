@@ -52,22 +52,45 @@ public class Downloader {
         root.setPrefSize(400, 600);
 
         TextField fieldURL = new TextField();
-        root.getChildren().addAll(fieldURL);
+        Button download = new Button();
+        download.setText("Download");
+        fieldURL.setStyle("-fx-padding: 20 20 20 20;-fx-font-size: 25;-fx-font-family:monospace;-fx-text-alignment: center;");
+        download.setStyle("-fx-padding: 20 20 20 20;-fx-font-size: 25;-fx-font-family:monospace;-fx-text-alignment: center;");
+        HBox.setMargin(download, new Insets(1, 1, 1, 1));
+        root.getChildren().addAll(fieldURL, download);
 
-        fieldURL.setOnAction(event -> {
-            Task<Void> task = new DownloadTask(fieldURL.getText());
-            ProgressBar progressBar = new ProgressBar();
-            progressBar.setPrefWidth(350);
-            progressBar.progressProperty().bind(task.progressProperty());
-            root.getChildren().add(progressBar);
+        if (fieldURL.getText() != null) {
+            fieldURL.setOnAction(event -> {
+                Task<Void> task = new DownloadTask(fieldURL.getText());
+                ProgressBar progressBar = new ProgressBar();
+                progressBar.setPrefWidth(350);
+                progressBar.progressProperty().bind(task.progressProperty());
+                root.getChildren().add(progressBar);
 
-            fieldURL.clear();
+                fieldURL.clear();
 
-            Thread thread = new Thread(task);
-            thread.setDaemon(true);
-            thread.start();
-        });
+                Thread thread = new Thread(task);
+                thread.setDaemon(true);
+                thread.start();
+            });
 
+            download.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent event) {
+                    Task<Void> task = new DownloadTask(fieldURL.getText());
+                    ProgressBar progressBar = new ProgressBar();
+                    progressBar.setPrefWidth(350);
+                    progressBar.progressProperty().bind(task.progressProperty());
+                    root.getChildren().add(progressBar);
+
+                    fieldURL.clear();
+
+                    Thread thread = new Thread(task);
+                    thread.setDaemon(true);
+                    thread.start();
+                }
+            });
+        }else fieldURL.setText("Yo have add the file URL");
         return root;
     }
 
