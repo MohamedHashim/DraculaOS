@@ -4,8 +4,7 @@ import apps.*;
 import javafx.animation.*;
 import javafx.application.Application;
 import javafx.event.*;
-import javafx.geometry.Insets;
-import javafx.geometry.Pos;
+import javafx.geometry.*;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -14,6 +13,7 @@ import javafx.scene.input.*;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
+import javafx.scene.text.*;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -71,9 +71,37 @@ public class Main extends Application {
 
         Pane root = new Pane();
         root.setStyle("-fx-background-image: url(res/Lock.jpg); -fx-padding: 20; -fx-font-size: 20;");
-        root.getChildren().addAll(path, lock);
+        BorderPane taskBar = new BorderPane();
+        taskBar.setCenter(clock());
+        taskBar.setPrefSize(700, 700);
+        taskBar.setStyle("-fx-font-size: 30;");
 
 
+        Label label_hours = new Label();
+        Label label_mins = new Label();
+        Label label_ampm = new Label();
+
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.seconds(0), actionEvent -> {
+                    Calendar time = Calendar.getInstance();
+                    String hourString = StringUtilities.pad(2, ' ', time.get(Calendar.HOUR) == 0 ? "12" : time.get(Calendar.HOUR) + "");
+                    String minuteString = StringUtilities.pad(2, '0', time.get(Calendar.MINUTE) + "");
+                    String secondString = StringUtilities.pad(2, '0', time.get(Calendar.SECOND) + "");
+                    String ampmString = time.get(Calendar.AM_PM) == Calendar.AM ? "AM" : "PM";
+                    label_hours.setText(hourString);
+                    label_mins.setText(minuteString);
+                    label_ampm.setText(ampmString);
+                }),
+                new KeyFrame(Duration.seconds(1)));
+
+        timeline.setCycleCount(Animation.INDEFINITE);
+        timeline.play();
+
+        label_hours.setStyle("-fx-padding: 130 500 800 450;-fx-font-size: 170;-fx-font-family:monospace; -fx-text-fill: white; -fx-text-alignment: center;");
+        label_mins.setStyle("-fx-padding: 310 0 500 500;-fx-font-size: 170;-fx-font-family:monospace; -fx-text-fill: white; -fx-text-alignment: right; ");
+        label_ampm.setStyle("-fx-padding: 420 0 800 720;-fx-font-size: 60;-fx-font-family:monospace;-fx-text-fill: white; -fx-text-alignment: left; ");
+
+        root.getChildren().addAll(path, label_hours, label_mins, label_ampm, lock);
         Scene scene = new Scene(root, 1366, 768);
         stage.setTitle("Desktop");
         stage.setScene(scene);
