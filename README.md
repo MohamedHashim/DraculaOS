@@ -26,5 +26,6 @@ Dracula OS tracks processes inside our virtual OS via IDE log and recording ever
 - Media Player (Audio and Video)
 - Web Browser
 - Calculator
+- Downloader
 
 Project presentation : https://prezi.com/zslps79h0cx-/dracula/
