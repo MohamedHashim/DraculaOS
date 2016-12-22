@@ -6,6 +6,13 @@ Virtual Operating System Demo
 Dracula OS simulates real Operating Systems, with awesome user interface, and high functionality via built-in apps.
 Dracula OS tracks processes inside our virtual OS via IDE log and recording every detail about it.
 
+#####Lock Screen
+![alt tag](https://github.com/MohamedHashim/DraculaOS/blob/master/screenshot1.jpg)
+
+#####Home Screen
+![alt tag](https://github.com/MohamedHashim/DraculaOS/blob/master/screenshot2.png)
+
+
 #####Modules implemented:
 - File system module.
 - Memory management module.
@@ -19,15 +26,5 @@ Dracula OS tracks processes inside our virtual OS via IDE log and recording ever
 - Media Player (Audio and Video)
 - Web Browser
 - Calculator
-- Tic Tac Toe Game
 
-
-#####Dependencies required for Ubuntu
-
-you need to download these libraries
-
-[libavutil51](http://security.ubuntu.com/ubuntu/pool/main/liba/libav/libavutil51_0.8.17-0ubuntu0.12.04.1_amd64.deb) - 
-[libavcodec53](http://security.ubuntu.com/ubuntu/pool/main/liba/libav/libavcodec53_0.8.17-0ubuntu0.12.04.1_amd64.deb) - 
-[libavformat53](http://security.ubuntu.com/ubuntu/pool/main/liba/libav/libavformat53_0.8.17-0ubuntu0.12.04.1_amd64.deb) -
-
-then install them using `$ sudo dpkg -i libav*.deb`
+Project presentation : https://prezi.com/zslps79h0cx-/dracula/
